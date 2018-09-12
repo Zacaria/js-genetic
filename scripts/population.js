@@ -12,7 +12,8 @@ function Population() {
 
     this.evaluate = function() {
         var maxFitness = this.sticks.reduce(function(fitness, stick) {
-            return Math.max(fitness, stick.calculateFitess());
+            stick.calculateFitness()
+            return Math.max(fitness, stick.fitness);
         }, 0);
 
         this.sticks.forEach(stick => stick.fitness /= maxFitness);
@@ -27,8 +28,8 @@ function Population() {
         })
     }
 
-    this.selection = function() {
-        this.sticks = this.sticks.map(stick => {
+    this.selection = () => {
+        this.sticks = this.sticks.map(() => {
             var parentA = random(this.pool).dna;
             var parentB = random(this.pool).dna;
 
@@ -36,7 +37,5 @@ function Population() {
 
             return new Stick(child);
         });
-
-
     }
 }

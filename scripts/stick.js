@@ -27,7 +27,7 @@ function Stick(dnas) {
         pop();
     }
 
-    this.calculateFitness = function() {
+    this.calculateFitness = () => {
         var distance = dist(this.pos.x, this.pos.y, target.x, target.y);
         this.fitness = map(distance, 0, width, width, 0);
     }

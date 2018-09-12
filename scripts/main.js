@@ -11,7 +11,7 @@ function setup() {
     population = new Population();
     visualLifespan = createDiv();
     visualGeneration = createP();
-    target = createVector(width/2, 50);
+    target = createVector(width/2, 250);
 }
 
 var temp = 0;
@@ -20,13 +20,14 @@ function draw() {
     background(42, 49, 57);
 
     temp++;
-    console.log(temp);
     population.run();
     visualLifespan.html(count);
     count++;
 
     if (count == lifespan) {
-        population = new Population();
+        population.evaluate();
+        population.selection();
+
         count = 0;
         generation++;
         visualGeneration.html('Generation: ' + generation)
