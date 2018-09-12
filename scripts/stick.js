@@ -1,8 +1,9 @@
-function Stick() {
+function Stick(dnas) {
     this.pos = createVector(width/2, height);
     this.vel = createVector();
     this.acc = createVector();
-    this.dna = new dna();
+    this.dna = dnas || new dna();
+    this.fitness = 0;
 
     this.applyForce = function(force) {
         this.acc.add(force);
@@ -24,5 +25,10 @@ function Stick() {
         rectMode(CENTER);
         rect(0, 0, 25, 5);
         pop();
+    }
+
+    this.calculateFitness = function() {
+        var distance = dist(this.pos.x, this.pos.y, target.x, target.y);
+        this.fitness = map(distance, 0, width, width, 0);
     }
 }
